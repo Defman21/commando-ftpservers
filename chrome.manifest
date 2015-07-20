@@ -1,4 +1,4 @@
 content scope-ftpservers content/
 # Overlay this only if Komodo/KomodoEdit/pull/424 will be accepted, doesn't work in current version
-# locale scope-ftpservers en-US locale/en-US/
-# overlay chrome://commando/content/ui/pref.xul chrome://scope-ftpservers/content/ui/pref.xul
+locale scope-ftpservers en-US locale/en-US/
+overlay chrome://commando/content/ui/pref.xul chrome://scope-ftpservers/content/ui/pref.xul

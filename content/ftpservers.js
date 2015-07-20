@@ -1,6 +1,7 @@
 (function() {
     const log       = require("ko/logging").getLogger("commando-scope-ftpservers")
     const {Cc, Ci}  = require("chrome");
+    const commando = require("commando/commando");
 
     log.setLevel(require("ko/logging").LOG_DEBUG);
     
@@ -58,17 +59,17 @@
 
         // Return results to commando
         if (results.length)
-            require("commando/commando").renderResults(results, uuid);
+            commando.renderResults(results, uuid);
 
         // Let commando know we're done
         onComplete();
     }
 
-    this.onSelectResult = function(selectedItems) {
+    this.onSelectResult = function() {
         var RCS = Cc["@activestate.com/koRemoteConnectionService;1"].getService(Ci.koIRemoteConnectionService);
         log.debug("Invoking Project");
         // Open the first selected item
-        var selected = selectedItems.slice(0,1)[0],
+        var selected = commando.getSelectedResult(),
             server_data = selected.resultData.server_data,
             connection = RCS.getConnection2(server_data.protocol,
                                            server_data.hostname,
@@ -80,8 +81,7 @@
                                            server_data.sshkey); // Use getConnection2 because some servers uses ssh private key for auth -> koIRemoteConnection
         log.debug("Connected: " + connection.username + "@" + connection.server);
         
-        // Close Commando, we don't need it anymore
-        require("commando/commando").hideCommando();
+        commando.hideCommando();
     }
     
     this.onExpandSearch = function(query, uuid, callback) {
