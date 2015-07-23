@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/Defman21/commando-ftpservers/blob/master/screenshot.png?raw=true)
+![Screenshot](https://github.com/Defman21/commando-remoteservers/blob/master/screenshot.png?raw=true)
 
 ###Note: the addon is not completed atm, nothing happens in Places pane when you select/connect to a remote server!
 

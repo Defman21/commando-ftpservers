@@ -1,5 +1,5 @@
 (function() {
-    const log       = require("ko/logging").getLogger("commando-scope-ftpservers")
+    const log       = require("ko/logging").getLogger("commando-scope-remoteservers")
     const {Cc, Ci}  = require("chrome");
     const commando = require("commando/commando");
 
@@ -36,7 +36,7 @@
                 },
                 description: cur.username + "@" + cur.hostname+description_suffix,
                 icon: "koicon://ko-svg/chrome/icomoon/skin/database.svg",
-                scope: "scope-ftpservers",
+                scope: "scope-remoteservers",
                 allowMultiSelect: false
             });
         }
@@ -64,13 +64,25 @@
         // Let commando know we're done
         onComplete();
     }
+    
+    function remoteToURI(remote) {
+        var io = Cc["@mozilla.org/network/io-service;1"].
+        getService(Ci.nsIIOService);
+        var uri = io.newURI("http://foo.tld", null, null);
+        uri.scheme = remote.protocol;
+        uri.host = remote.server;
+        uri.username = remote.username;
+        uri.password = remote.password;
+        uri.port = remote.port;
+        
+        return uri.spec;
+    }
 
     this.onSelectResult = function() {
         var RCS = Cc["@activestate.com/koRemoteConnectionService;1"].getService(Ci.koIRemoteConnectionService);
         log.debug("Invoking Project");
         // Open the first selected item
-        var selected = commando.getSelectedResult(),
-            server_data = selected.resultData.server_data,
+        var server_data = commando.getSelectedResult().server_data,
             connection = RCS.getConnection2(server_data.protocol,
                                            server_data.hostname,
                                            server_data.port,
@@ -79,8 +91,8 @@
                                            server_data.path,
                                            server_data.passive,
                                            server_data.sshkey); // Use getConnection2 because some servers uses ssh private key for auth -> koIRemoteConnection
-        log.debug("Connected: " + connection.username + "@" + connection.server);
-        
+        var uri = remoteToURI(connection);
+        ko.places.manager.openNamedRemoteDirectory(uri);
         commando.hideCommando();
     }
     

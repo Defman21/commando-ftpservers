@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 
 <!DOCTYPE window SYSTEM "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" [
-  <!ENTITY % scopeFTPSDTD SYSTEM "chrome://scope-ftpservers/locale/commando.dtd">
+  <!ENTITY % scopeFTPSDTD SYSTEM "chrome://scope-remoteservers/locale/commando.dtd">
   %scopeFTPSDTD;
 ]>
 
 <overlay id="overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <window id="commando-prefs-window" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-        <groupbox orient="vertical" id="ftpservers-settings">
-            <caption label="FTP Servers Scope settings" />
-            <hbox id="ftpServersScopeSettingsHbox"
+        <groupbox orient="vertical" id="remoteservers-settings">
+            <caption label="Remote Servers Scope settings" />
+            <hbox id="remoteserversScopeSettingsHbox"
                   align="center">
                  <checkbox pref="true"
-                              id="commando_ftpservers_use_alert"
-                              prefid="commando_ftpservers_use_alert"
+                              id="commando_remoteservers_use_alert"
+                              prefid="commando_remoteservers_use_alert"
                               preftype="boolean"
                               prefdefault="false"
-                              label="&commando.ftpservers.use_alert;"
+                              label="&commando.remoteservers.use_alert;"
                                 />
             </hbox>
         </groupbox>

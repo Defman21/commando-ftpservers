@@ -2,10 +2,10 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
     <Description about="urn:mozilla:install-manifest">
-        <em:id>scope-ftpservers@devbevariour.cf</em:id>
-        <em:name>Commando Scope - FTP Servers</em:name>
+        <em:id>scope-remoteservers@devbevariour.cf</em:id>
+        <em:name>Commando Scope - Remote Servers</em:name>
         <em:version>1.0</em:version>
-        <em:description>Searches through FTP Servers</em:description>
+        <em:description>Searches through Remote Servers</em:description>
         <em:creator>Sergey Kislyakov</em:creator>
         <em:homepageURL>http://devbevariour.cf/</em:homepageURL>
         <em:iconURL>chrome://scope-projects/skin/icon.png</em:iconURL>

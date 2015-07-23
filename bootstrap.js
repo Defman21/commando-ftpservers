@@ -3,13 +3,13 @@ Cu.import('resource://gre/modules/Services.jsm');
 
 function loadIntoWindow(window) {
     try {
-        window.require.setRequirePath("scope-ftpservers/", "chrome://scope-ftpservers/content/");
+        window.require.setRequirePath("scope-remoteservers/", "chrome://scope-remoteservers/content/");
         var commando = window.require("commando/commando");
-        commando.registerScope("scope-ftpservers", {
-            name: "FTP Servers",
-            description: "Load FTP Servers",
+        commando.registerScope("scope-remoteservers", {
+            name: "Remote Servers",
+            description: "Load Remote Servers",
             icon: "koicon://ko-svg/chrome/icomoon/skin/database.svg",
-            handler: "scope-ftpservers/ftpservers"
+            handler: "scope-remoteservers/remoteservers"
         });
     } catch (e) {
         Cu.reportError("Commando: Exception while registering scope 'FTP Servers'");
@@ -20,7 +20,7 @@ function loadIntoWindow(window) {
 function unloadFromWindow(window) {
     if (!window) return;
     var commando = window.require("commando/commando");
-    commando.unregisterScope("scope-ftpservers");
+    commando.unregisterScope("scope-remoteservers");
 }
 
 /* Everything below this line is boilerplate and probably should not be touched */
