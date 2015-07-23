@@ -46,11 +46,7 @@
         var item = commando.getSubscope(),
             data = item.server_data,
             password = (data.sshkey.length > 0) ? "OpenSSH key: " + data.sshkey : "Password: " + data.password,
-            text = "Hostname: " + data.hostname + ", " + "Username: " + data.username + ", " + password,
-            use_alert = ko.prefs.getBoolean("commando_servers_use_alert", false);
-        if (use_alert)
-            commando.alert(text);
-        else
+            text = "Hostname: " + data.hostname + ", " + "Username: " + data.username + ", " + password;
             commando.tip(text);
     }
     
