@@ -1,5 +1,5 @@
 (function() {
-    const log       = require("ko/logging").getLogger("commando-scope-remoteservers")
+    const log       = require("ko/logging").getLogger("commando-scope-servers")
     const {Cc, Ci}  = require("chrome");
     const commando = require("commando/commando");
 
@@ -36,7 +36,7 @@
                 },
                 description: cur.username + "@" + cur.hostname+description_suffix,
                 icon: "koicon://ko-svg/chrome/icomoon/skin/database.svg",
-                scope: "scope-remoteservers",
+                scope: "scope-servers",
                 allowMultiSelect: false
             });
         }

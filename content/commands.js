@@ -1,5 +1,5 @@
 (function(){
-    const log      = require("ko/logging").getLogger("commando-scope-remoteservers-expand");
+    const log      = require("ko/logging").getLogger("commando-scope-servers-expand");
     const commando = require("commando/commando");
     
     log.setLevel(require("ko/logging").LOG_DEBUG);
@@ -9,7 +9,7 @@
             id: "getServerInfo",
             name: "Get Server Info",
             tip: "Get server info: username, hostname and password or ssh key path",
-            scope: "scope-remoteservers",
+            scope: "scope-servers",
             command: doGetServerInfo,
             weight: 1000,
             allowExpand: false
@@ -47,7 +47,7 @@
             data = item.server_data,
             password = (data.sshkey.length > 0) ? "OpenSSH key: " + data.sshkey : "Password: " + data.password,
             text = "Hostname: " + data.hostname + ", " + "Username: " + data.username + ", " + password,
-            use_alert = ko.prefs.getBoolean("commando_remoteservers_use_alert", false);
+            use_alert = ko.prefs.getBoolean("commando_servers_use_alert", false);
         if (use_alert)
             commando.alert(text);
         else
