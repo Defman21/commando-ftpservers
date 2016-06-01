@@ -6,9 +6,9 @@
     
     var entries = [
         {
-            id: "getServerInfo",
-            name: "Get Server Info",
-            tip: "Get server info: username, hostname and password or ssh key path",
+            id: "aboutServer",
+            name: "About",
+            tip: "Get info about this server",
             scope: "scope-servers",
             command: doGetServerInfo,
             weight: 1000,
@@ -35,12 +35,12 @@
         }
         
         return cache;
-    }
+    };
     
     this.onExpandSearch = function (query, uuid, callback) {
         commando.renderResults(commando.filter(getResults(query), query), uuid);
         callback();
-    }
+    };
     
     function doGetServerInfo () {
         var item = commando.getSubscope(),

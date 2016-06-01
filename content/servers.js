@@ -1,9 +1,9 @@
 (function() {
-    const log       = require("ko/logging").getLogger("commando-scope-servers")
+    const log       = require("ko/logging").getLogger("commando-scope-servers");
     const {Cc, Ci}  = require("chrome");
     const commando = require("commando/commando");
 
-    log.setLevel(require("ko/logging").LOG_DEBUG);
+    log.setLevel(require("ko/logging").LOG_INFO);
     
     this.onSearch = function(query, uuid, onComplete) {
         
@@ -24,7 +24,7 @@
             results.push({
                 id: cur.guid,
                 name: cur.alias,
-                server_data: { // Give server info to onSelectResult
+                server_data: {
                     "protocol": cur.protocol,
                     "hostname": cur.hostname,
                     "port": cur.port,
@@ -63,7 +63,7 @@
 
         // Let commando know we're done
         onComplete();
-    }
+    };
     
     function remoteToURI(remote) {
         var io = Cc["@mozilla.org/network/io-service;1"].
@@ -94,11 +94,11 @@
         var uri = remoteToURI(connection);
         ko.places.manager.openNamedRemoteDirectory(uri);
         commando.hideCommando();
-    }
+    };
     
     this.onExpandSearch = function(query, uuid, callback) {
         var commands = require("./commands");
         commands.onExpandSearch(query, uuid, callback);
-    }
+    };
 
 }).apply(module.exports);

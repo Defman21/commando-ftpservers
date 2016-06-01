@@ -7,7 +7,7 @@ function loadIntoWindow(window) {
         var commando = window.require("commando/commando");
         commando.registerScope("scope-servers", {
             name: "Servers",
-            description: "Load Servers",
+            description: "Navigate between your servers",
             icon: "koicon://ko-svg/chrome/icomoon/skin/database.svg",
             handler: "scope-servers/servers"
         });
