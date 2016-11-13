@@ -1,7 +1,8 @@
 (function() {
     const log       = require("ko/logging").getLogger("commando-scope-servers");
     const {Cc, Ci}  = require("chrome");
-    const commando = require("commando/commando");
+    const commando  = require("commando/commando");
+    const notify    = require("notify/notify");
 
     log.setLevel(require("ko/logging").LOG_INFO);
     
@@ -80,19 +81,29 @@
 
     this.onSelectResult = function() {
         var RCS = Cc["@activestate.com/koRemoteConnectionService;1"].getService(Ci.koIRemoteConnectionService);
-        log.debug("Invoking Project");
+        log.debug("Invoking Server");
         // Open the first selected item
-        var server_data = commando.getSelectedResult().server_data,
-            connection = RCS.getConnection2(server_data.protocol,
-                                           server_data.hostname,
-                                           server_data.port,
-                                           server_data.username,
-                                           server_data.password,
-                                           server_data.path,
-                                           server_data.passive,
-                                           server_data.sshkey); // Use getConnection2 because some servers uses ssh private key for auth -> koIRemoteConnection
-        var uri = remoteToURI(connection);
-        ko.places.manager.openNamedRemoteDirectory(uri);
+        var server_data = commando.getSelectedResult().server_data;
+        setTimeout(() => {
+            try {
+                var connection = RCS.getConnection2(server_data.protocol,
+                                                    server_data.hostname,
+                                                    server_data.port,
+                                                    server_data.username,
+                                                    server_data.password,
+                                                    server_data.path,
+                                                    server_data.passive,
+                                                    server_data.sshkey);
+                var uri = remoteToURI(connection);
+                ko.places.manager.openNamedRemoteDirectory(uri);
+            } catch (e) {
+                log.error(`Failed to connect: ${e}`);
+                notify.send(`Failed to connect to ${server_data.hostname}! See log file for more info.`, {
+                    priority: "error",
+                    category: "commando_servers"
+                });
+            }
+        }, 0);
         commando.hideCommando();
     };
     

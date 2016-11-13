@@ -45,7 +45,7 @@
     function doGetServerInfo () {
         var item = commando.getSubscope(),
             data = item.server_data,
-            password = (data.sshkey.length > 0) ? "OpenSSH key: " + data.sshkey : "Password: " + data.password,
+            password = (data.sshkey.length > 0) ? "SSH key: " + data.sshkey : "Password: " + data.password,
             text = "Hostname: " + data.hostname + ", " + "Username: " + data.username + ", " + password;
             commando.tip(text);
     }
