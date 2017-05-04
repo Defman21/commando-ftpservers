@@ -36,7 +36,8 @@
                     "sshkey": cur.privatekey
                 },
                 description: cur.username + "@" + cur.hostname+description_suffix,
-                icon: "koicon://ko-svg/chrome/icomoon/skin/database.svg",
+                icon: "koicon://ko-svg/chrome/fontawesome/skin/database.svg?size=14",
+                classList: 'small-icon',
                 scope: "scope-servers",
                 allowMultiSelect: false
             });
@@ -104,7 +105,7 @@
                 });
             }
         }, 0);
-        commando.hideCommando();
+        commando.hide();
     };
     
     this.onExpandSearch = function(query, uuid, callback) {
